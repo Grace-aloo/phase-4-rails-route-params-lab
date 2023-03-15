@@ -2,7 +2,9 @@ class StudentsController < ApplicationController
 
   def index
     students = Student.all
-    render json: students
+    student = Student.where("first_name LIKE ? OR last_name LIKE ?", "%#{params[:name]}%", "%#{params[:name]}%")
+    # render json: students
+    render json: student
   end
 
   def show 
